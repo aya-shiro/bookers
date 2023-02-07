@@ -12,16 +12,15 @@
   <%= book.body %>
 <% end %>
 
-<span>
-<%= link_to "詳細", show_book_path(@book.id) %>
-</span>
+<!--第二引数””で囲ったらリンクができたのは何故？-->
+<%= link_to "詳細", "books/#{:id}" %>
 
 
 
 <!--新規投稿フォーム-->
 <h1>New book<h1>
 
-<%= form_with model: @book, url: "books", method: :post do |f| %>
+<%= form_with model: @book, url: "/books", method: :post do |f| %>
   <p>Title</p>
   <%= f.text_field :title %>
 

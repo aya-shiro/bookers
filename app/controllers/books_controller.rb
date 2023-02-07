@@ -6,16 +6,17 @@ protect_from_forgery
   end
 
   def create
-    @book = Book.new(id: params[:id])
-    @book.save
+    book = Book.new(book_params)
+    book.save
+    flash[:notice] = "投稿成功メッセージ"
     # このredirect_toは効いてる
     redirect_to "/books"
-    flash[:notice] = "投稿成功メッセージ"
+
   end
 
   # 一覧と投稿フォームを表示
   def index
-    @books = Book.new
+    @books = Book.all
   end
 
   def show
@@ -30,4 +31,15 @@ protect_from_forgery
 
   def destroy
   end
+
+
+
+  private
+
+  def book_params
+    params.require(:book).permit(:title, :body)
+  end
+
 end
+
+
