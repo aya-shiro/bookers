@@ -24,6 +24,16 @@
 <!--新規投稿フォーム-->
 <h1>New book<h1>
 
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラー発生
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 <%= form_with model: @book, url: "/books", method: :post do |f| %>
   <p>Title</p>
   <%= f.text_field :title %>

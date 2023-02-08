@@ -5,19 +5,21 @@ protect_from_forgery
   end
 
   def create
-    book = Book.new(book_params)
-    book.save
-    # この2文でid取得する！
-    flash[:notice] = "投稿成功メッセージ"
-    redirect_to "/books"
-
+    # 取得したデータparamsをテーブルにsave
+    @book = Book.new(book_params)
+    if @book.save
+      flash[:notice] = "Book was successfully created！"
+      redirect_to book_path(@book.id)
+    else
+      render :index
+    end
   end
 
   # 一覧と投稿フォームを表示
   def index
     # ★対応するビューで使っている変数は定義が必要！！
     @book = Book.new
-    @books = Book.all
+    @books = Book.all.order(created_at: :asc)
   end
 
   def show
@@ -31,14 +33,14 @@ protect_from_forgery
   def update
     book = Book.find(params[:id])
     book.update(book_params)
-    flash[:notice] = "更新成功メッセージ"
+    flash[:notice] = "Book was successfully updated!"
     redirect_to book_path(book.id)
   end
 
   def destroy
     book = Book.find(params[:id])
     book.destroy
-    flash[:notice] = "削除成功メッセージ"
+    flash[:notice] = "Book was successfully destroyed."
     redirect_to index_path
   end
 
@@ -46,6 +48,7 @@ protect_from_forgery
 
   private
 
+# ここでデータparamsを取得
   def book_params
     params.require(:book).permit(:title, :body)
   end
