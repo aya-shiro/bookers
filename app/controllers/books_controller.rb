@@ -30,12 +30,16 @@ protect_from_forgery
 
   def update
     book = Book.find(params[:id])
-    book.update
+    book.update(book_params)
     flash[:notice] = "更新成功メッセージ"
     redirect_to book_path(book.id)
   end
 
   def destroy
+    book = Book.find(params[:id])
+    book.destroy
+    flash[:notice] = "削除成功メッセージ"
+    redirect_to index_path
   end
 
 

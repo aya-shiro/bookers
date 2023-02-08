@@ -16,7 +16,7 @@
 <!--この(book)は上記のeachで取り出した|book|！！-->
   <span><%= link_to "Show", book_path(book) %></span>
   <span><%= link_to "Edit", edit_path(book) %></span>
-  <span><%= link_to "Destroy", index_path(book) , method: :delete %></span>
+  <span><%= link_to "Destroy", destroy_path(book) , method: :delete, "data-confirm" => "削除確認メッセージ" %></span>
 <% end %>
 
 
