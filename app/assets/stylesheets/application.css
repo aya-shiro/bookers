@@ -29,13 +29,14 @@
   font-size: 15px;
 }
 
-.contents {
-  display: block;
-}
 
 .flash {
   color: #00a497;
   margin: 20px;
+}
+
+strong {
+  font-size: 20px;
 }
 
 span {
