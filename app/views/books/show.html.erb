@@ -1,12 +1,10 @@
 <!--更新成功フラッシュ-->
-<div><%= flash[:notice] %></div>
+<div class="flash"><%= flash[:notice] %></div>
 
 
-<p>Title:</p>
-<p><%= @book.title %></p>
+<p><span>Title:</span><%= @book.title %></p>
 
-<p>Body:</p>
-<p><%= @book.body %></p>
+<p><span>Body:</span><%= @book.body %></p>
 
 <%= link_to "Edit", edit_book_path(@book.id) %>
 <%= link_to "Back", books_path %>

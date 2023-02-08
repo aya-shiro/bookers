@@ -1,34 +1,37 @@
 <!--投稿成功フラッシュ-->
-<div><%= flash[:notice] %></div>
+<div class="flash"><%= flash[:notice] %></div>
 
 <h1>Books</h1>
 
-<p>Title</p>
-<% @books.each do |book| %>
-  <%= book.title %>
-<% end %>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+  </tr>
 
-<p>Body</p>
+<tr class="contents">
 <% @books.each do |book| %>
-  <%= book.body %>
-
+  <td><%= book.title %></td>
+  <td><%= book.body %></td>
 <!--book_path(book)には隠れ.idがいる book_path(book.id)と同義-->
 <!--この(book)は上記のeachで取り出した|book|-->
-  <span><%= link_to "Show", book_path(book) %></span>
-  <span><%= link_to "Edit", edit_book_path(book) %></span>
-  <span><%= link_to "Destroy", book_path(book) , method: :delete, "data-confirm" => "削除確認メッセージ" %></span>
+  <td><%= link_to "Show", book_path(book) %></td>
+  <td><%= link_to "Edit", edit_book_path(book) %></td>
+  <td><%= link_to "Destroy", book_path(book) , method: :delete, "data-confirm" => "Are you sure?" %></td>
 <% end %>
+</tr>
 
+</table>
 
 
 <!--新規投稿フォーム-->
 <h1>New book<h1>
 
 <% if @book.errors.any? %>
-  <p><%= @book.errors.count %>errors occurred:</p>
+  <div class="error-count"><%= @book.errors.count %>errors occurred:</div>
   <ul>
     <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+      <li class="error-message"><%= message %></li>
     <% end %>
   </ul>
 <% end %>
