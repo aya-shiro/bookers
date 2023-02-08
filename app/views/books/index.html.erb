@@ -1,3 +1,4 @@
+<!--投稿成功フラッシュ-->
 <div><%= flash[:notice] %></div>
 
 <h1>Books</h1>
@@ -10,10 +11,13 @@
 <p>Body</p>
 <% @books.each do |book| %>
   <%= book.body %>
-<% end %>
 
-<!--第二引数””で囲ったらリンクができたのは何故？-->
-<%= link_to "詳細", "books/#{:id}" %>
+<!--book_path(book)には隠れ.idがいる！book_path(book.id)と同義！-->
+<!--この(book)は上記のeachで取り出した|book|！！-->
+  <span><%= link_to "Show", book_path(book) %></span>
+  <span><%= link_to "Edit", edit_path(book) %></span>
+  <span><%= link_to "Destroy", index_path(book) , method: :delete %></span>
+<% end %>
 
 
 
