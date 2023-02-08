@@ -12,11 +12,11 @@
 <% @books.each do |book| %>
   <%= book.body %>
 
-<!--book_path(book)には隠れ.idがいる！book_path(book.id)と同義！-->
-<!--この(book)は上記のeachで取り出した|book|！！-->
+<!--book_path(book)には隠れ.idがいる book_path(book.id)と同義-->
+<!--この(book)は上記のeachで取り出した|book|-->
   <span><%= link_to "Show", book_path(book) %></span>
-  <span><%= link_to "Edit", edit_path(book) %></span>
-  <span><%= link_to "Destroy", destroy_path(book) , method: :delete, "data-confirm" => "削除確認メッセージ" %></span>
+  <span><%= link_to "Edit", edit_book_path(book) %></span>
+  <span><%= link_to "Destroy", book_path(book) , method: :delete, "data-confirm" => "削除確認メッセージ" %></span>
 <% end %>
 
 
@@ -25,7 +25,7 @@
 <h1>New book<h1>
 
 <% if @book.errors.any? %>
-  <%= @book.errors.count %>件のエラー発生
+  <p><%= @book.errors.count %>errors occurred:</p>
   <ul>
     <% @book.errors.full_messages.each do |message| %>
       <li><%= message %></li>

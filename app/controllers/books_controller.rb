@@ -11,6 +11,7 @@ protect_from_forgery
       flash[:notice] = "Book was successfully created！"
       redirect_to book_path(@book.id)
     else
+      @books = Book.all
       render :index
     end
   end
@@ -40,8 +41,8 @@ protect_from_forgery
   def destroy
     book = Book.find(params[:id])
     book.destroy
-    flash[:notice] = "Book was successfully destroyed."
-    redirect_to index_path
+    flash[:notice] = "Book was successfully destroyed!"
+    redirect_to books_path
   end
 
 
